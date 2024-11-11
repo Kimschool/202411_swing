@@ -1,10 +1,16 @@
 package frame;
 
+import data.UsersRW;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JFrame {
+
+    public static String LOGIN_ID = null;
+    public static String LOGIN_NAME = null;
+
 
     public Login() {
         setTitle("Login"); // 프레밈의 타이틀
@@ -35,8 +41,14 @@ public class Login extends JFrame {
                 String id = t1.getText();
                 String password = new String(t2.getPassword());
 
-                if(id.equals("admin") && password.equals("1234")) {
-                    JOptionPane.showMessageDialog(null, "로그인 성공");
+                UsersRW usersRW = new UsersRW();
+                boolean isLogin = usersRW.signIn(id, password);
+
+
+                if(isLogin) {
+                    JOptionPane.showMessageDialog(null, LOGIN_ID + "님 환영합니다.");
+                    dispose();
+                    new Main();
                 } else {
                     JOptionPane.showMessageDialog(null, "로그인 실패");
                 }
