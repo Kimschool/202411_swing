@@ -5,6 +5,7 @@ public class Board {
     private int no;
     private String title;
     private String writer;
+    private String content;
     private String date;
 
     public int getNo() {
@@ -29,6 +30,14 @@ public class Board {
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getDate() {

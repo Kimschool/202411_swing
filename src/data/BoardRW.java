@@ -11,9 +11,6 @@ import java.util.List;
 
 public class BoardRW {
 
-
-
-
     public List<Board> readBoard(String path) {
         String filePath = path;
         try {
@@ -27,8 +24,9 @@ public class BoardRW {
                 Board board = new Board();
                 board.setNo(Integer.parseInt(datas[0]));
                 board.setTitle(datas[1]);
-                board.setWriter(datas[2]);
-                board.setDate(datas[3]);
+                board.setContent(datas[2]);
+                board.setWriter(datas[3]);
+                board.setDate(datas[4]);
                 boardList.add(board);
             }
             return boardList;
