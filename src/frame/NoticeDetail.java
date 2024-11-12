@@ -2,6 +2,9 @@ package frame;
 
 import entity.Board;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,10 +12,10 @@ public class NoticeDetail extends JFrame {
 
     public NoticeDetail(Board board) {
         setTitle("Notice Detail");
-        setSize(500, 300);
+        setSize(500, 700);
         setLocationRelativeTo(null);
 
-        JPanel p = new JPanel(new GridLayout(6, 1));
+        JPanel p = new JPanel(new GridLayout(7, 1));
 
         JPanel p1 = new JPanel();
         JLabel l1 = new JLabel("No");
@@ -52,7 +55,34 @@ public class NoticeDetail extends JFrame {
         ta.setText(board.getContent());
         ta.setEditable(false);
 
-        p5.add(ta);
+        JScrollPane contentScrollPane = new JScrollPane(ta);
+        p5.add(contentScrollPane);
+
+        // 댓글
+//        BoardRW boardRW = new BoardRW();
+//        List<Comment> commentList = boardRW.readComment("notice", board.getNo());
+//        int commentCount = commentList.size();
+//        JPanel p6 = new JPanel(new GridLayout(commentCount, 1));
+////        JLabel l6 = new JLabel("Comment");
+//
+//        // CommentList갯수만큼 JPanel생성
+//        for(int i = 0; i < commentList.size(); i++) {
+//            JPanel p_main = new JPanel(new GridLayout(2,1));
+//
+//            JPanel p_upper = new JPanel();
+//            JLabel l_upper = new JLabel(i + 1 + " " + commentList.get(i).getWriter() + " " + commentList.get(i).getDate());
+//            p_upper.add(l_upper);
+//
+//            JPanel p_bottom = new JPanel();
+//            JLabel l_bottom = new JLabel(commentList.get(i).getContent());
+//            p_bottom.add(l_bottom);
+//
+//            p_main.add(p_upper);
+//            p_main.add(p_bottom);
+//
+//            p6.add(p_main);
+//        }
+
 
         JPanel p6 = new JPanel();
         JButton b1 = new JButton("Back");
@@ -60,8 +90,17 @@ public class NoticeDetail extends JFrame {
             dispose();
             new Notice();
         });
+        JButton b2 = new JButton("Comment");
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // NoticeDatail Frame을 닫지 않고 선택이 안되게하고, 새로운 Comment Frame을 띄워준다.
+                new Comments("notice", board.getNo());
+            }
+        });
 
         p6.add(b1);
+        p6.add(b2);
 
         p.add(p1); p.add(p2); p.add(p3); p.add(p4); p.add(p5); p.add(p6);
 
