@@ -41,6 +41,15 @@ public class Comments extends JFrame {
 
         add(commentScrollPane);
 
+        JPanel p2 = new JPanel(new GridLayout(2,1));
+        JPanel p2_u = new JPanel();
+        JLabel l2 = new JLabel("Write Comment");
+        JTextField t = new JTextField(30);
+        JButton b2 = new JButton("Write");
+        p2_u.add(l2);
+        p2_u.add(t);
+        p2_u.add(b2);
+
         JButton b = new JButton("Close");
         b.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +58,13 @@ public class Comments extends JFrame {
             }
         });
 
-        add(b);
+
+        p2.add(p2_u);
+        p2.add(b);
+
+
+        add(p2);
+
 
 
         setVisible(true);
